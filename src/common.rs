@@ -2357,7 +2357,31 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
     ThrottledInterval::new(i)
 }
 
+// Compiled-in custom client config for this fork. Upstream only accepts a
+// custom.txt signed with RustDesk's private key, which a self-hoster cannot
+// produce, so the same settings are baked in here and the client ships as a
+// single locked executable.
+const BUILTIN_CUSTOM_CLIENT: &str = r#"{
+  "app-name": "MacTree",
+  "conn-type": "outgoing",
+  "disable-installation": "Y",
+  "override-settings": {
+    "custom-rendezvous-server": "103.45.130.180",
+    "relay-server": "103.45.130.180:21117",
+    "api-server": "http://103.45.130.180:21114",
+    "key": "WQs1YP2ztPYFv7mdko86xB6pDOuHjxO1NJ8xVgRYSKw=",
+    "hide-server-settings": "Y",
+    "hide-proxy-settings": "Y",
+    "hide-websocket-settings": "Y",
+    "hide-powered-by-me": "Y",
+    "hide-help-cards": "Y",
+    "allow-auto-update": "N"
+  }
+}"#;
+
 pub fn load_custom_client() {
+    read_custom_client_json(BUILTIN_CUSTOM_CLIENT.as_bytes());
+
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
@@ -2469,8 +2493,12 @@ pub fn read_custom_client(config: &str) {
         log::error!("Failed to dec custom client config");
         return;
     };
+    read_custom_client_json(&data);
+}
+
+pub fn read_custom_client_json(data: &[u8]) {
     let Ok(mut data) =
-        serde_json::from_slice::<std::collections::HashMap<String, serde_json::Value>>(&data)
+        serde_json::from_slice::<std::collections::HashMap<String, serde_json::Value>>(data)
     else {
         log::error!("Failed to parse custom client config");
         return;
