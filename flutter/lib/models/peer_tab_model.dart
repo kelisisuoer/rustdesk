@@ -37,12 +37,14 @@ class PeerTabModel with ChangeNotifier {
     IconFont.addressBook,
     IconFont.deviceGroupFill,
   ];
+  // 只保留地址簿：机器清单由自建后台实时下发，最近/收藏是它的子集，
+  // 「发现」扫的是控制端自己的局域网，跟机房里的机器无关，留着只会误导。
   List<bool> isEnabled = List.from([
-    true,
-    true,
-    !isWeb && bind.mainGetLocalOption(key: "disable-discovery-panel") != "Y",
+    false,
+    false,
+    false,
     !(bind.isDisableAb() || bind.isDisableAccount()),
-    !(bind.isDisableGroupPanel() || bind.isDisableAccount()),
+    false,
   ]);
   final List<bool> _isVisible = List.filled(maxTabCount, true, growable: false);
   List<bool> get isVisibleEnabled => () {
