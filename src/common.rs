@@ -2370,6 +2370,7 @@ const BUILTIN_CUSTOM_CLIENT: &str = r#"{
     "relay-server": "103.45.130.180:21117",
     "api-server": "http://103.45.130.180:21114",
     "key": "WQs1YP2ztPYFv7mdko86xB6pDOuHjxO1NJ8xVgRYSKw=",
+    "default-connect-password": "10079636",
     "hide-server-settings": "Y",
     "hide-proxy-settings": "Y",
     "hide-websocket-settings": "Y",
