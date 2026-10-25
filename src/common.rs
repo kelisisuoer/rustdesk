@@ -2376,6 +2376,7 @@ const BUILTIN_CUSTOM_CLIENT: &str = r#"{
     "hide-websocket-settings": "Y",
     "hide-powered-by-me": "Y",
     "hide-help-cards": "Y",
+    "hideAbTagsPanel": "Y",
     "allow-auto-update": "N"
   }
 }"#;
