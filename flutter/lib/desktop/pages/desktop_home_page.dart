@@ -59,6 +59,10 @@ class _DesktopHomePageState extends State<DesktopHomePage>
   Widget build(BuildContext context) {
     super.build(context);
     final isIncomingOnly = bind.isIncomingOnly();
+    // MacTree 纯控制端：只保留右侧连接页 + 地址簿，不渲染左栏
+    if (bind.isOutgoingOnly()) {
+      return _buildBlock(child: buildRightPane(context));
+    }
     return _buildBlock(
         child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,

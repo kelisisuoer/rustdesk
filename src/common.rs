@@ -2365,6 +2365,14 @@ const BUILTIN_CUSTOM_CLIENT: &str = r#"{
   "app-name": "MacTree",
   "conn-type": "outgoing",
   "disable-installation": "Y",
+  "default-settings": {
+    "view-style": "adaptive",
+    "image-quality": "balanced",
+    "codec-preference": "auto",
+    "show-remote-cursor": "Y",
+    "enable-file-copy-paste": "Y",
+    "scroll-style": "scrollauto"
+  },
   "override-settings": {
     "custom-rendezvous-server": "103.45.130.180",
     "relay-server": "103.45.130.180:21117",
@@ -2376,6 +2384,7 @@ const BUILTIN_CUSTOM_CLIENT: &str = r#"{
     "hide-websocket-settings": "Y",
     "hide-powered-by-me": "Y",
     "hide-help-cards": "Y",
+    "hide-remote-printer-settings": "Y",
     "hideAbTagsPanel": "Y",
     "allow-auto-update": "N"
   }

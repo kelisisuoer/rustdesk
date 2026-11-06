@@ -14,6 +14,10 @@ import 'platform_model.dart';
 
 bool refreshingUser = false;
 
+// MacTree 定制端：自建服务器免登录。启动时若本地没有凭据，就预置这个固定 token
+// 和用户信息，地址簿 API（服务端 rd_authed 认同一个常量）即把设备列表直接返回。
+const String kBuiltinAccessToken = 'MTREE-9f3c1a7b24e04d58b6e1c0a2f5d8e3b1';
+
 class UserModel {
   final RxString userName = ''.obs;
   final RxString displayName = ''.obs;
@@ -54,7 +58,14 @@ class UserModel {
     if (bind.isDisableAccount()) return;
     networkError.value = '';
     networkErrorFromServer.value = false;
-    final token = bind.mainGetLocalOption(key: 'access_token');
+    var token = bind.mainGetLocalOption(key: 'access_token');
+    if (token == '' && bind.isCustomClient()) {
+      await bind.mainSetLocalOption(
+          key: 'access_token', value: kBuiltinAccessToken);
+      await bind.mainSetLocalOption(
+          key: 'user_info', value: '{"name":"admin","status":1}');
+      token = kBuiltinAccessToken;
+    }
     if (token == '') {
       await updateOtherModels();
       return;
