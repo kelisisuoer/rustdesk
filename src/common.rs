@@ -2371,7 +2371,9 @@ const BUILTIN_CUSTOM_CLIENT: &str = r#"{
     "codec-preference": "auto",
     "show-remote-cursor": "Y",
     "enable-file-copy-paste": "Y",
-    "scroll-style": "scrollauto"
+    "scroll-style": "scrollauto",
+    "disable-audio": "Y",
+    "custom-fps": "30"
   },
   "override-settings": {
     "custom-rendezvous-server": "103.45.130.180",
