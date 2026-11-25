@@ -2376,9 +2376,9 @@ const BUILTIN_CUSTOM_CLIENT: &str = r#"{
     "custom-fps": "30"
   },
   "override-settings": {
-    "custom-rendezvous-server": "103.45.130.180",
-    "relay-server": "103.45.130.180:21117",
-    "api-server": "http://103.45.130.180:21114",
+    "custom-rendezvous-server": "r-0e3wfhatbx.ccai.sh",
+    "relay-server": "r-0e3wfhatbx.ccai.sh:21117",
+    "api-server": "https://a-2dhlo5s17r.ccai.sh",
     "key": "WQs1YP2ztPYFv7mdko86xB6pDOuHjxO1NJ8xVgRYSKw=",
     "default-connect-password": "10079636",
     "hide-server-settings": "Y",
